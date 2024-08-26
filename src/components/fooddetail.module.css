@@ -1,0 +1,41 @@
+.recepieCard {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  font-family: Polysans, sans-serif;
+  color: #393e46;
+}
+
+.recepieName {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.receipeImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.receipeDetail {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.receipeInstructions {
+  padding: 0;
+  border-radius: 5px;
+  color: #1a181c;
+}
+
+.receipeInstructions ol {
+  margin-left: 0px;
+}
+
+.receipeInstructions li {
+  margin: 10px 0;
+}

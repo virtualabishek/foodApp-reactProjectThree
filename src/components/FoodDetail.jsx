@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./fooddetail.module.css";
 
 export default function FoodDetail({ foodId }) {
   const [food, setFood] = useState({});
@@ -17,10 +18,10 @@ export default function FoodDetail({ foodId }) {
   }, [foodId]);
   return (
     <div>
-      <div>
-        <h1>{food.title}</h1>
-        <img src={food.image} alt="food.name" />
-        <div>
+      <div className={styles.recepieCard}>
+        <h1 className={styles.recepieName}>{food.title}</h1>
+        <img src={food.image} className={styles.receipeImage} alt="food.name" />
+        <div className={styles.receipeDetail}>
           <span>
             <strong> ⌚ {food.readyInMinutes} Minutes</strong>
           </span>
@@ -28,23 +29,46 @@ export default function FoodDetail({ foodId }) {
             👪<strong> Server{food.servings}</strong>
           </span>
           <span>
-            {food.vegetarian ? "🥕 Vegeterian" : " 🍗 Non - Vegeterian"}
+            <strong>
+              {food.vegetarian ? "🥕 Vegeterian" : " 🍗 Non - Vegeterian"}
+            </strong>
           </span>
-          <span>{food.vegan ? " 🐄Vegan" : ""}</span>
+          <span>
+            <strong>{food.vegan ? " 🐄Vegan" : ""}</strong>
+          </span>
         </div>
         <div>
-          <span> $ {food.pricePerServing / 100} Per Serving</span>
+          <span>
+            <strong> $ {food.pricePerServing / 100} Per Serving</strong>
+          </span>
         </div>
       </div>
       <div>
+        <h2>Ingredients</h2>
+        {food.extendedIngredients.map((item) => (
+          <div>
+            <img
+              src={
+                `https://spoonacular.com/cdn/ingredients_100x100/` + item.image
+              }
+              alt=""
+            />
+            <h3>{item.name}</h3>
+          </div>
+        ))}
+
         <h2>Instruction</h2>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          food.analyzedInstructions[0].steps.map((step, index) => (
-            <li key={index}>{step.step}</li>
-          ))
-        )}
+        <div className={styles.receipeInstructions}>
+          <ol>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              food.analyzedInstructions[0].steps.map((step, index) => (
+                <li key={index}>{step.step}</li>
+              ))
+            )}
+          </ol>
+        </div>
       </div>
     </div>
   );
